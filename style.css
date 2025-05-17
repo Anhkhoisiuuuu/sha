@@ -1,0 +1,90 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #1a2a44 0%, #0d1b2a 100%);
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    background: #1e2a3c;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    border: 2px solid #00ffff;
+    width: 300px;
+}
+
+.date-time {
+    color: #00ffff;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 2px solid #00ffff;
+}
+
+h1 {
+    color: #00ffff;
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.description {
+    color: #ffffff;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.facebook {
+    background: #3b5998;
+}
+
+.discord {
+    background: #7289da;
+}
+
+#password-container h2 {
+    color: #00ffff;
+    margin-bottom: 10px;
+}
+
+#password-container input {
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 80%;
+    border: 1px solid #00ffff;
+    background: #1e2a3c;
+    color: #ffffff;
+}
+
+#password-container button {
+    padding: 5px 15px;
+    border: none;
+    background: #3b5998;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+}
