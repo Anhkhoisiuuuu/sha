@@ -27,14 +27,17 @@ function updateDateTime() {
 updateDateTime();
 setInterval(updateDateTime, 1000);
 
-// Kiểm tra mật khẩu
+// Kiểm tra mật khẩu với SHA-256
 function checkPassword() {
     const password = document.getElementById('password-input').value;
-    const correctPassword = 'Anhkhoiyeungoc';
+    // Băm mật khẩu đầu vào bằng SHA-256
+    const hash = sha256(password);
+    // Giá trị băm của "12345"
+    const correctHash = '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5';
     const passwordContainer = document.getElementById('password-container');
     const content = document.getElementById('content');
 
-    if (password === correctPassword) {
+    if (hash === correctHash) {
         passwordContainer.style.display = 'none';
         content.style.display = 'block';
     } else {
@@ -68,17 +71,32 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Phát hiện khi DevTools được mở
+// Phát hiện DevTools bằng cách ghi đè console.log
 (function detectDevTools() {
-    const threshold = 160; // Ngưỡng để phát hiện DevTools
-    const checkDevTools = () => {
-        const width = window.outerWidth - window.innerWidth;
-        const height = window.outerHeight - window.innerHeight;
-        if (width > threshold || height > threshold) {
-            alert('Vui lòng không mở DevTools!');
-            // Thử đóng cửa sổ (có thể không hoạt động trên một số trình duyệt)
-            window.close();
-        }
+    let devtoolsOpen = false;
+    const originalConsoleLog = console.log;
+
+    console.log = function () {
+        devtoolsOpen = true;
+        originalConsoleLog.apply(console, arguments);
     };
-    setInterval(checkDevTools, 1000);
-})();
+
+    setInterval(() => {
+        if (devtoolsOpen) {
+            alert('Vui lòng không mở DevTools!');
+            devtoolsOpen = false;
+            window.location.reload();
+        }
+    }, 1000);
+
+    setInterval(() => {
+        const start = new Date();
+        debugger;
+        if (new Date() - start > 100) {
+            alert('Vui lòng không mở DevTools!');
+            window.location.reload();
+        }
+    }, 1000);
+});
+
+// Thư viện SHA-256 từ CDN (được tải tự động qua script bên dưới)
